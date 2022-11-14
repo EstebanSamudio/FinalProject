@@ -17,6 +17,8 @@ public class EnemyController : MonoBehaviour
 
     Animator animator;
 
+    private RubyController rubyController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,5 +86,10 @@ public class EnemyController : MonoBehaviour
         rigidbody2D.simulated = false;
         animator.SetTrigger("Fixed");
         smokeEffect.Stop();
+
+        if (rubyController != null)
+        {
+            rubyController.FixedRobots(+ 1);
+        }
     }
 }

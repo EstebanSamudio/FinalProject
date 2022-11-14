@@ -234,6 +234,7 @@ MonoBehaviour:
   maxHealth: 5
   timeInvincible: 2
   projectilePrefab: {fileID: 1539706546215166267, guid: 505c164ed05c2c241b13c95546118fbb, type: 3}
+  hitParticle: {fileID: 3550083985692316860, guid: 5baf1996e5c6b5340828cd9a0343902e, type: 3}
   throwSound: {fileID: 8300000, guid: b2edfd40873655249ba0e01a5cf705be, type: 3}
   hitSound: {fileID: 8300000, guid: 9b1bb1f450b7d444fa4a8019d13519a7, type: 3}
 --- !u!50 &529548889624530566

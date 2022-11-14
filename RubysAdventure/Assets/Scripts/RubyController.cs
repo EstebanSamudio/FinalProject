@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class RubyController : MonoBehaviour
 {
     public float speed = 3.0f;
     public int maxHealth = 5;
     public float timeInvincible = 2.0f;
+    private int fix = 0;
 
     public int health { get { return currentHealth; } }
     int currentHealth;
 
     public GameObject projectilePrefab;
+    public GameObject loseTextObject;
+    public GameObject restartButton;
+    public GameObject winTextObject;
+    public TextMeshProUGUI fixedCount;
+    public ParticleSystem hitParticle;
 
     bool isInvincible;
     float invincibleTimer;
@@ -35,6 +43,12 @@ public class RubyController : MonoBehaviour
         currentHealth = maxHealth;
 
         audioSource = GetComponent<AudioSource>();
+
+        fixedCount.text = " " + fix.ToString();
+
+        loseTextObject.SetActive(false);
+        winTextObject.SetActive(false);
+        restartButton.SetActive(false);
     }
 
     public void PlaySound(AudioClip clip)
@@ -62,6 +76,7 @@ public class RubyController : MonoBehaviour
 
         if (isInvincible)
         {
+            hitParticle.Stop();
             invincibleTimer -= Time.deltaTime;
             if (invincibleTimer < 0)
                 isInvincible = false;
@@ -99,6 +114,8 @@ public class RubyController : MonoBehaviour
         if (amount < 0)
         {
             animator.SetTrigger("Hit");
+            Instantiate(hitParticle, transform.position, Quaternion.identity);
+
             if (isInvincible)
                 return;
 
@@ -110,6 +127,13 @@ public class RubyController : MonoBehaviour
 
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
+
+        if (currentHealth == 0)
+        {
+            loseTextObject.SetActive(true);
+            restartButton.SetActive(true);
+            Destroy(this);
+        }
     }
 
     void Launch()
@@ -122,5 +146,18 @@ public class RubyController : MonoBehaviour
         animator.SetTrigger("Launch");
 
         PlaySound(throwSound);
+    }
+
+    public void FixedRobots(int amount)
+    {
+        fix += amount;
+        fixedCount.text = "" + fix.ToString();
+
+        if (fix == 4)
+        {
+            winTextObject.SetActive(true);
+            restartButton.SetActive(true);
+            Destroy(this);
+        }
     }
 }

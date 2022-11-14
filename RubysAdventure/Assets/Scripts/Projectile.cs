@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Projectile : MonoBehaviour
 {
@@ -30,6 +32,12 @@ public class Projectile : MonoBehaviour
         if (e != null)
         {
             e.Fix();
+        }
+
+        BigEnemyController b = other.collider.GetComponent<BigEnemyController>();
+        if (b != null)
+        {
+            b.Fix();
         }
 
         Destroy(gameObject);
