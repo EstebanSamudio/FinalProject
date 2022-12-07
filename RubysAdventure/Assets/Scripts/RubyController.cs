@@ -198,6 +198,7 @@ public class RubyController : MonoBehaviour
 
             PlaySound(hitSound);
             damageEffect = Instantiate(damageEffect, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+            damageEffect.Stop();
 
             animator.SetTrigger("Hit");
         }
