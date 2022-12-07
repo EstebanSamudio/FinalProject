@@ -103,7 +103,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.023334265, y: -0.69310784}
+  m_Offset: {x: -0.023334265, y: -0.5914892}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -114,7 +114,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.67762995, y: 0.64722866}
+  m_Size: {x: 0.67762995, y: 0.850466}
   m_EdgeRadius: 0
 --- !u!50 &6088232682388192019
 Rigidbody2D:
@@ -153,6 +153,8 @@ MonoBehaviour:
   vertical: 1
   changeTime: 3
   smokeEffect: {fileID: 7930886907613911855, guid: 921b751836f45f343a6bf9a43a442d16, type: 3}
+  fixedSound: {fileID: 8300000, guid: e7fa1971a86d60945bb64585c0ac14d5, type: 3}
+  brokenSound: {fileID: 8300000, guid: 6bfbad8ffdf387d4e87e8fa07b62f7c1, type: 3}
 --- !u!95 &1711968117848256033
 Animator:
   serializedVersion: 4

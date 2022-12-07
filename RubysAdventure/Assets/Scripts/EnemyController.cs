@@ -4,36 +4,56 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float speed;
-    public bool vertical;
+    public float speed = 3.0f;
+    public bool vertical; // Used to set if robot is moving veritcally
     public float changeTime = 3.0f;
-
-    public ParticleSystem smokeEffect;
 
     Rigidbody2D rigidbody2D;
     float timer;
     int direction = 1;
+
+    // Particle Smoke Variable
+    public ParticleSystem smokeEffect;
+
+    // broken variable
     bool broken = true;
 
+    // Animation
     Animator animator;
 
+    // Audio Source Variables
+    AudioSource audioSource;
+    public AudioClip fixedSound;
+    public AudioClip brokenSound;
+
+    // Ruby Controller
     private RubyController rubyController;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         timer = changeTime;
+
+        // Animation
         animator = GetComponent<Animator>();
+
+        // Audio Component
+        audioSource = GetComponent<AudioSource>();
+
+        // Broken Sound Plays on Loop
+        audioSource.clip = brokenSound;
+        audioSource.loop = true;
+        audioSource.Play();
+
+        //Ruby
+        GameObject rubyControllerObject = GameObject.FindWithTag("Player");
+        rubyController = rubyControllerObject.GetComponent<RubyController>();
     }
 
     void Update()
     {
-        if (!broken)
-        {
-            return;
-        }
-
         timer -= Time.deltaTime;
 
         if (timer < 0)
@@ -41,30 +61,43 @@ public class EnemyController : MonoBehaviour
             direction = -direction;
             timer = changeTime;
         }
-    }
 
-    void FixedUpdate()
-    {
+        // Fixing robot code
+        //remember ! inverse the test, so if broken is true !broken will be false and return won’t be executed.
         if (!broken)
         {
             return;
         }
+    }
 
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         Vector2 position = rigidbody2D.position;
 
         if (vertical)
         {
-            position.y = position.y + Time.deltaTime * speed * direction;
+            position.y = position.y + Time.deltaTime * speed * direction; ;
 
+            // Animation (Vertical)
             animator.SetFloat("MoveX", 0);
             animator.SetFloat("MoveY", direction);
         }
+
         else
         {
-            position.x = position.x + Time.deltaTime * speed * direction;
+            position.x = position.x + Time.deltaTime * speed * direction; ;
 
+            // Animation (Horizontal)
             animator.SetFloat("MoveX", direction);
             animator.SetFloat("MoveY", 0);
+        }
+
+        // Fixing robot code
+        if (!broken)
+        {
+            return;
+            smokeEffect.Stop();
         }
 
         rigidbody2D.MovePosition(position);
@@ -80,16 +113,31 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    //Public because we want to call it from elsewhere like the projectile script
     public void Fix()
     {
         broken = false;
         rigidbody2D.simulated = false;
+
+        //optional if you added the fixed animation
         animator.SetTrigger("Fixed");
-        smokeEffect.Stop();
+
+        // Particle effect set to false
+
+        // Broken sound effect stops and plays fixed sound
+        audioSource.clip = fixedSound;
+        audioSource.loop = false;
+        audioSource.Play();
 
         if (rubyController != null)
         {
-            rubyController.FixedRobots(+ 1);
+            rubyController.FixedRobots(1);
         }
+    }
+
+    // Plays sounds from this script and others
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }

@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 4352766362982287698}
   m_Layer: 8
   m_Name: Ruby
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,11 +232,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   maxHealth: 5
-  timeInvincible: 2
-  projectilePrefab: {fileID: 1539706546215166267, guid: 505c164ed05c2c241b13c95546118fbb, type: 3}
-  hitParticle: {fileID: 3550083985692316860, guid: 5baf1996e5c6b5340828cd9a0343902e, type: 3}
   throwSound: {fileID: 8300000, guid: b2edfd40873655249ba0e01a5cf705be, type: 3}
   hitSound: {fileID: 8300000, guid: 9b1bb1f450b7d444fa4a8019d13519a7, type: 3}
+  winSound: {fileID: 0}
+  loseSound: {fileID: 0}
+  talkSound: {fileID: 0}
+  backgroundSound: {fileID: 0}
+  timeInvincible: 2
+  timeBoosting: 4
+  healthEffect: {fileID: 0}
+  damageEffect: {fileID: 0}
+  fixedText: {fileID: 0}
+  WinTextObject: {fileID: 0}
+  LoseTextObject: {fileID: 0}
+  restartButton: {fileID: 0}
+  projectilePrefab: {fileID: 1539706546215166267, guid: 505c164ed05c2c241b13c95546118fbb, type: 3}
+  currentAmmo: 0
+  ammoText: {fileID: 0}
 --- !u!50 &529548889624530566
 Rigidbody2D:
   serializedVersion: 4

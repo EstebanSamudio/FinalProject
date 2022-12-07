@@ -3,7 +3,15 @@ guid: 7df3e1517cfdcba458f2607e90de680b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - projectilePrefab: {fileID: 1539706546215166267, guid: 505c164ed05c2c241b13c95546118fbb, type: 3}
+  - loseTextObject: {instanceID: 0}
+  - restartButton: {instanceID: 0}
+  - winTextObject: {instanceID: 0}
+  - fixedCount: {instanceID: 0}
+  - hitParticle: {instanceID: 0}
+  - throwSound: {instanceID: 0}
+  - hitSound: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

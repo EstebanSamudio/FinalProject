@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8fa17032d30c2448382c26b826190c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupParticle: {fileID: 8234339543570236545, guid: 59071f8d39719f04f8ea6c319ae5ae55, type: 3}
+  pickupParticle: {fileID: 8234339543570236551, guid: 59071f8d39719f04f8ea6c319ae5ae55, type: 3}
   collectedClip: {fileID: 8300000, guid: af5f8b64e3f58f24c87ff8f789b04f6c, type: 3}
 --- !u!61 &7922856603978369512
 BoxCollider2D:
